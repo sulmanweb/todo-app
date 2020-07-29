@@ -3,7 +3,6 @@ module Types
     # Auth
     field :sign_in, mutation: Mutations::Auth::SignIn
     field :sign_up, mutation: Mutations::Auth::SignUp
-    field :sign_out, mutation: Mutations::Auth::SignOut
 
     # List
     field :create_list, mutation: Mutations::Lists::CreateList

@@ -6,7 +6,7 @@ module Queries
       # Inputs
       argument :id, ID, required: true, description: "List Id"
 
-      type [Types::ListType], null: true
+      type Types::ListType, null: true
 
       def resolve(id:)
         authenticate_user
