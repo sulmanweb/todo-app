@@ -21,9 +21,9 @@ gem 'mongoid', '~> 7.0.5'
 
 # GraphQL
 gem 'graphql', '~> 1.11', '>= 1.11.1'
-gem 'graphiql-rails', '~> 1.7'
 gem 'sprockets', '~> 3'
 gem 'jwt', '~> 2.2', '>= 2.2.1'
+gem 'graphql_playground-rails', '~> 2.1'
 
 # factory bot
 gem 'factory_bot_rails', '5.1.1'
