@@ -20,7 +20,7 @@ module Queries
           post '/graphql', params: {query: query}, headers: headers
           expect(response).to have_http_status(200)
           json = JSON.parse(response.body)
-          expect(json["data"]["me"]["id"]).not_to be_nil
+          expect(json["data"]["me"]["id"]).to eql user._id.to_s
         end
       end
     end
