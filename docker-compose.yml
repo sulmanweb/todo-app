@@ -29,6 +29,15 @@ services:
     depends_on:
       - mongo-service
 
+  front-vue:
+    build: ./front-vue
+    ports:
+      - "8080:8080" # use port that you want to in your local instead of 8091
+    volumes:
+      - ./front-vue:/front-vue
+      - front_node_modules:/front-vue/node_modules
+
 volumes:
   mongodb:
   rails_log:
+  front_node_modules:
