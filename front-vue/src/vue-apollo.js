@@ -9,7 +9,7 @@ import {
 Vue.use(VueApollo);
 
 // Name of the localStorage item
-const AUTH_TOKEN = "apollo-token";
+const AUTH_TOKEN = "token";
 
 // Http endpoint
 const httpEndpoint =
@@ -35,7 +35,7 @@ const defaultOptions = {
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  // link: myLink
+  // link: middlewareLink.concat(HttpLink),
 
   // Override default cache
   // cache: myCache

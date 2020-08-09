@@ -1,0 +1,8 @@
+query me {
+  me {
+    lists {
+      id
+      name
+    }
+  }
+}

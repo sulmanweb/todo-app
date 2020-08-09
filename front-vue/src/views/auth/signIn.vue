@@ -492,21 +492,21 @@
 
 <script>
 import gql from "graphql-tag";
+import { onLogin } from "@/vue-apollo";
 export default {
   name: "SignIn",
   data() {
     return {
-      // TODO: remove default values
-      email: "sulmanweb@gmail.com",
-      password: "abcd@123",
+      email: "",
+      password: "",
     };
   },
   apollo: {},
   methods: {
-    signedIn(val) {
+    async signedIn(val) {
       const data = val.data.signIn;
       if (!!data) {
-        localStorage.setItem("token", data.token);
+        await onLogin(this.$apollo.provider.defaultClient, data.token);
         this.$router.push("/");
       }
     },
