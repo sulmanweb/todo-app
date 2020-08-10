@@ -21,6 +21,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "signin" */ "../views/auth/signIn.vue"),
   },
+  {
+    path: "/lists/:listId",
+    name: "ListShow",
+    component: () =>
+      import(/* webpackChunkName: "listShow" */ "../views/listShow.vue"),
+  },
 ];
 
 const router = new VueRouter({

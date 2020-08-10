@@ -1,0 +1,7 @@
+mutation createTask($name: String!, $listId: ID!) {
+  createTask(input: { name: $name, listId: $listId }) {
+    task {
+      id
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query showList($id: ID!) {
+  showList(id: $id) {
+    id
+    name
+    tasks {
+      id
+      name
+      done
+    }
+  }
+}

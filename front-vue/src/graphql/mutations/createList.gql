@@ -1,0 +1,8 @@
+mutation createList($name: String!) {
+  createList(input: { name: $name }) {
+    list {
+      id
+      name
+    }
+  }
+}
