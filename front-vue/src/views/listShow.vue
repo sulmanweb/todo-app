@@ -2,23 +2,24 @@
   <div class="list-show">
     <div class="mt-2 md:mt-8 lg:mt-16 max-w-xl mx-auto">
       <div class="bg-white p-8 shadow rounded-lg">
-        <h1 class="text-3xl uppercase font-semibold tracking-wide text-center mb-2">
+        <h1
+          class="text-3xl uppercase font-semibold tracking-wide text-center mb-2"
+        >
           <span class="float-left" @click="$router.go(-1)">
-            <!-- <font-awesome-icon
-                icon="long-arrow-alt-left"
-                class="text-black"
-            ></font-awesome-icon>-->
-            Back
+            <font-awesome-icon
+              icon="long-arrow-alt-left"
+              class="text-black"
+            ></font-awesome-icon>
           </span>
-          {{list.name}}
+          {{ list.name }}
         </h1>
         <ul class="max-w-xl mx-auto">
           <ApolloMutation
             :mutation="require('@/graphql/mutations/createTask.gql')"
-            :variables="{name: name, listId: this.$route.params.listId}"
+            :variables="{ name: name, listId: this.$route.params.listId }"
             @done="taskAdded"
           >
-            <template v-slot="{mutate, loading, error}">
+            <template v-slot="{ mutate, loading, error }">
               <form action="#" @submit.prevent="mutate()">
                 <input
                   type="text"
@@ -39,11 +40,22 @@
             :class="task.done ? 'text-gray-600 line-through' : 'text-black'"
             @click="changeStatus(task)"
           >
-            <!-- <font-awesome-icon icon="check-circle" class="text-gray-600" v-if="task.done === true"></font-awesome-icon> -->
-            <!-- <font-awesome-icon icon="circle" class="text-black" v-if="task.done === false"></font-awesome-icon> -->
-            <span>{{task.name}}</span>
+            <font-awesome-icon
+              icon="check-circle"
+              class="text-gray-600"
+              v-if="task.done === true"
+            ></font-awesome-icon>
+            <font-awesome-icon
+              icon="circle"
+              class="text-black"
+              v-if="task.done === false"
+            ></font-awesome-icon>
+            <span> {{ task.name }}</span>
             <span @click.prevent="deleteTask(task)">
-              <!-- <font-awesome-icon icon="trash" class="text-black float-right"></font-awesome-icon> -->
+              <font-awesome-icon
+                icon="trash"
+                class="text-black float-right"
+              ></font-awesome-icon>
             </span>
           </li>
         </ul>
@@ -80,6 +92,28 @@ export default {
       if (!!result.data) {
         this.list = result.data.showList;
         this.tasks = result.data.showList.tasks;
+      }
+    },
+    async changeStatus(task) {
+      const result = await this.$apollo.mutate({
+        mutation: require("@/graphql/mutations/changeTaskStatus.gql"),
+        variables: {
+          id: task.id,
+        },
+      });
+      if (!!result.data) {
+        await this.loadList();
+      }
+    },
+    async deleteTask(task) {
+      const result = await this.$apollo.mutate({
+        mutation: require("@/graphql/mutations/deleteTask.gql"),
+        variables: {
+          id: task.id,
+        },
+      });
+      if (!!result.data) {
+        await this.loadList();
       }
     },
     taskAdded() {

@@ -1,0 +1,9 @@
+mutation changeTaskStatus($id: ID!) {
+  changeTaskStatus(id: $id) {
+    task {
+      id
+      name
+      done
+    }
+  }
+}
